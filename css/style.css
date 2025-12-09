@@ -1,0 +1,706 @@
+/* ============================================
+   CSS変数の定義
+   ============================================ */
+:root {
+  /* メインカラー */
+  --primary-color: #4A90E2;
+  --secondary-color: #FFB84D;
+  --success-color: #7ED321;
+  --warning-color: #F5A623;
+  --danger-color: #D0021B;
+
+  /* 背景 */
+  --bg-color: #FFF9E6;
+  --card-bg: #FFFFFF;
+
+  /* 文字 */
+  --text-color: #333333;
+  --text-light: #666666;
+
+  /* ボタン */
+  --btn-primary: #4A90E2;
+  --btn-secondary: #95A5A6;
+}
+
+/* ============================================
+   基本スタイル
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN',
+               'メイリオ', Meiryo, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  padding: 16px;
+  max-width: 100%;
+}
+
+ruby {
+  ruby-align: center;
+}
+
+rt {
+  font-size: 0.5em;
+}
+
+/* ============================================
+   画面共通スタイル
+   ============================================ */
+.screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+h2 {
+  font-size: 1.8em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+h3 {
+  font-size: 1.3em;
+  margin-bottom: 12px;
+  color: var(--text-color);
+}
+
+h4 {
+  font-size: 1.1em;
+  margin-bottom: 10px;
+  color: var(--text-color);
+}
+
+/* ============================================
+   ボタンスタイル
+   ============================================ */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  min-width: 120px;
+  min-height: 44px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.btn-primary {
+  background: var(--btn-primary);
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--btn-secondary);
+  color: white;
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary:active {
+  transform: scale(0.95);
+}
+
+.btn-danger {
+  background: var(--danger-color);
+  color: white;
+}
+
+.btn-success {
+  background: var(--success-color);
+  color: white;
+}
+
+/* ============================================
+   タイトル画面
+   ============================================ */
+#title .subtitle {
+  text-align: center;
+  font-size: 1.1em;
+  margin-bottom: 30px;
+  color: var(--text-light);
+}
+
+/* ============================================
+   説明画面
+   ============================================ */
+.guide-content {
+  margin-bottom: 30px;
+}
+
+.guide-item {
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: var(--bg-color);
+  border-radius: 8px;
+}
+
+.guide-item h3 {
+  color: var(--primary-color);
+  margin-bottom: 8px;
+}
+
+.guide-item p {
+  color: var(--text-color);
+  line-height: 1.8;
+}
+
+/* ============================================
+   作戦立案画面
+   ============================================ */
+.planning-section {
+  margin-bottom: 30px;
+}
+
+.instruction {
+  margin-bottom: 15px;
+  color: var(--text-light);
+  font-size: 0.95em;
+}
+
+/* 目標選択 */
+.goal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.goal-card {
+  background-color: var(--bg-color);
+  border: 3px solid transparent;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.goal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.goal-card.selected {
+  border-color: var(--primary-color);
+  background-color: #E8F4FF;
+}
+
+.goal-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.goal-card .goal-name {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.goal-card .goal-price {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* 選択した目標の表示 */
+.selected-goal {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: var(--bg-color);
+  border-radius: 12px;
+}
+
+.goal-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.goal-info img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.goal-details {
+  flex: 1;
+}
+
+.goal-details .goal-name {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.goal-details .goal-price {
+  font-size: 1.1em;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+/* 月ごとの計画 */
+.monthly-plan-item {
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.month-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.month-title {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.btn-remove-month {
+  padding: 5px 10px;
+  font-size: 14px;
+  min-width: auto;
+  width: auto;
+  margin: 0;
+}
+
+.item-selection {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+
+.item-card {
+  background-color: white;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.item-card:hover {
+  border-color: var(--primary-color);
+}
+
+.item-card.selected {
+  border-color: var(--primary-color);
+  background-color: #E8F4FF;
+}
+
+.item-card img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 5px;
+}
+
+.item-card .item-name {
+  font-size: 0.85em;
+  margin-bottom: 3px;
+}
+
+.item-card .item-price {
+  font-size: 0.8em;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.add-month-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* 計画の確認 */
+.plan-summary {
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.plan-summary p {
+  margin-bottom: 8px;
+  font-size: 1.05em;
+}
+
+.plan-summary span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.plan-status {
+  margin-top: 12px;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.plan-status.success {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.plan-status.error {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* ============================================
+   実行画面
+   ============================================ */
+.game-header {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.header-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.current-month,
+.current-money {
+  font-size: 1.1em;
+  font-weight: bold;
+}
+
+/* 目標表示 */
+.goal-display {
+  margin-bottom: 25px;
+}
+
+.goal-display .goal-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: var(--bg-color);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  cursor: default;
+}
+
+.goal-display .goal-card img {
+  width: 80px;
+  height: 80px;
+}
+
+.goal-display .goal-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.goal-display .goal-price {
+  font-size: 1em;
+  color: var(--primary-color);
+}
+
+/* 進捗バー */
+.progress-container {
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 30px;
+  background-color: #E0E0E0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success-color), var(--primary-color));
+  transition: width 0.5s ease;
+  width: 0%;
+}
+
+.progress-text {
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* イベント表示エリア */
+.event-area {
+  min-height: 200px;
+  margin-bottom: 20px;
+}
+
+.event-card {
+  background-color: var(--bg-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 15px;
+}
+
+.event-card h3 {
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.event-message {
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+
+.temptation-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+.temptation-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.temptation-info {
+  flex: 1;
+}
+
+.temptation-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.temptation-price {
+  font-size: 1.1em;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.event-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.event-buttons .btn {
+  flex: 1;
+  margin-top: 0;
+}
+
+.happening-positive {
+  border-left: 5px solid var(--success-color);
+}
+
+.happening-negative {
+  border-left: 5px solid var(--danger-color);
+}
+
+/* 計画との差分 */
+.plan-difference {
+  background-color: var(--bg-color);
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.plan-difference span {
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.plan-difference.positive span {
+  color: var(--success-color);
+}
+
+.plan-difference.negative span {
+  color: var(--danger-color);
+}
+
+/* ============================================
+   結果画面
+   ============================================ */
+#result-content {
+  text-align: center;
+}
+
+#result-title {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+}
+
+#result-title.success {
+  color: var(--success-color);
+}
+
+#result-title.failure {
+  color: var(--danger-color);
+}
+
+.result-details {
+  background-color: var(--bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.result-details p {
+  font-size: 1.1em;
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+
+.result-stats {
+  background-color: var(--bg-color);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.result-stats h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.result-stats p {
+  font-size: 1em;
+  margin-bottom: 8px;
+}
+
+.result-stats span {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+/* ============================================
+   画像フォールバック
+   ============================================ */
+.img-fallback {
+  display: inline-block;
+  padding: 10px;
+  background-color: var(--bg-color);
+  border: 2px dashed var(--text-light);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.9em;
+}
+
+/* ============================================
+   レスポンシブデザイン
+   ============================================ */
+@media (min-width: 768px) {
+  body {
+    padding: 32px;
+  }
+
+  .container {
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 3em;
+  }
+
+  h2 {
+    font-size: 2.2em;
+  }
+
+  .goal-grid {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .item-selection {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+}
+
+/* ============================================
+   アニメーション
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes successPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.success-animation {
+  animation: successPulse 0.5s ease-in-out;
+}

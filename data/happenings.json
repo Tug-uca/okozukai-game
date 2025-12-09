@@ -1,0 +1,30 @@
+[
+  {
+    "id": "happening_1",
+    "type": "positive",
+    "message": "おてつだいをしたよ！おこづかいがもらえた！",
+    "amount": 100,
+    "probability": 0.15
+  },
+  {
+    "id": "happening_2",
+    "type": "positive",
+    "message": "おじいちゃん・おばあちゃんからおこづかいをもらった！",
+    "amount": 300,
+    "probability": 0.10
+  },
+  {
+    "id": "happening_3",
+    "type": "positive",
+    "message": "たんじょう日で、おかねをもらった！",
+    "amount": 500,
+    "probability": 0.05
+  },
+  {
+    "id": "happening_4",
+    "type": "negative",
+    "message": "おかねをおとしてしまった…",
+    "amount": -200,
+    "probability": 0.05
+  }
+]

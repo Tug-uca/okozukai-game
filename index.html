@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>おこづかいチャレンジ！</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- タイトル画面 -->
+  <section id="title" class="screen">
+    <div class="container">
+      <h1>おこづかいチャレンジ！</h1>
+      <p class="subtitle">おこづかいを<ruby>貯<rt>た</rt></ruby>めて、ほしいものをゲットしよう！</p>
+      <button id="btn-start" class="btn btn-primary"><ruby>始<rt>はじ</rt></ruby>める</button>
+    </div>
+  </section>
+
+  <!-- 説明画面 -->
+  <section id="guide" class="screen" style="display: none;">
+    <div class="container">
+      <h2>あそびかた</h2>
+      <div class="guide-content">
+        <div class="guide-item">
+          <h3>1. <ruby>目標<rt>もくひょう</rt></ruby>を<ruby>決<rt>き</rt></ruby>める</h3>
+          <p>ほしいおもちゃを<ruby>選<rt>えら</rt></ruby>ぼう！</p>
+        </div>
+        <div class="guide-item">
+          <h3>2. <ruby>計画<rt>けいかく</rt></ruby>を<ruby>立<rt>た</rt></ruby>てる</h3>
+          <p><ruby>毎月<rt>まいつき</rt></ruby>500<ruby>円<rt>えん</rt></ruby>のおこづかいをもらえるよ。<br>
+          <ruby>何<rt>なに</rt></ruby>を<ruby>買<rt>か</rt></ruby>うか、<ruby>計画<rt>けいかく</rt></ruby>を<ruby>立<rt>た</rt></ruby>てよう！</p>
+        </div>
+        <div class="guide-item">
+          <h3>3. チャレンジする</h3>
+          <p><ruby>計画通<rt>けいかくどお</rt></ruby>りにいくかな？<br>
+          <ruby>誘惑<rt>ゆうわく</rt></ruby>に<ruby>負<rt>ま</rt></ruby>けずに<ruby>貯金<rt>ちょきん</rt></ruby>しよう！</p>
+        </div>
+      </div>
+      <button id="btn-to-planning" class="btn btn-primary"><ruby>計画<rt>けいかく</rt></ruby>を<ruby>立<rt>た</rt></ruby>てる</button>
+    </div>
+  </section>
+
+  <!-- 作戦立案画面 -->
+  <section id="planning" class="screen" style="display: none;">
+    <div class="container">
+      <h2><ruby>目標<rt>もくひょう</rt></ruby>と<ruby>計画<rt>けいかく</rt></ruby>を<ruby>立<rt>た</rt></ruby>てよう</h2>
+
+      <!-- 目標選択 -->
+      <div class="planning-section">
+        <h3><ruby>目標<rt>もくひょう</rt></ruby>のおもちゃを<ruby>選<rt>えら</rt></ruby>ぼう</h3>
+        <div id="goal-selection" class="goal-grid">
+          <!-- JavaScriptで動的生成 -->
+        </div>
+      </div>
+
+      <!-- 選択した目標の表示 -->
+      <div id="selected-goal-display" class="selected-goal" style="display: none;">
+        <h3><ruby>選<rt>えら</rt></ruby>んだ<ruby>目標<rt>もくひょう</rt></ruby></h3>
+        <div class="goal-info">
+          <img id="selected-goal-image" src="" alt="">
+          <div class="goal-details">
+            <p class="goal-name" id="selected-goal-name"></p>
+            <p class="goal-price"><ruby>値段<rt>ねだん</rt></ruby>: <span id="selected-goal-price"></span><ruby>円<rt>えん</rt></ruby></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 毎月の購入アイテム選択 -->
+      <div id="recurring-purchase-section" class="planning-section" style="display: none;">
+        <h3><ruby>毎月買<rt>まいつきか</rt></ruby>うものを<ruby>決<rt>き</rt></ruby>めよう</h3>
+        <p class="instruction"><ruby>毎月<rt>まいつき</rt></ruby>500<ruby>円<rt>えん</rt></ruby>のおこづかいをもらえるよ。<ruby>何<rt>なに</rt></ruby>を<ruby>買<rt>か</rt></ruby>うかな？（<ruby>何<rt>なに</rt></ruby>も<ruby>買<rt>か</rt></ruby>わなくてもOK！）</p>
+
+        <!-- 選択したアイテムのリスト -->
+        <div class="selected-items-section">
+          <h4><ruby>選<rt>えら</rt></ruby>んだもの</h4>
+          <div id="selected-recurring-items">
+            <!-- JavaScriptで動的生成 -->
+          </div>
+        </div>
+
+        <!-- アイテム選択 -->
+        <div id="recurring-item-selection" class="item-selection">
+          <!-- JavaScriptで動的生成 -->
+        </div>
+
+        <!-- 計画の確認 -->
+        <div id="plan-summary" class="plan-summary">
+          <h4><ruby>計画<rt>けいかく</rt></ruby>の<ruby>確認<rt>かくにん</rt></ruby></h4>
+          <p><ruby>毎月<rt>まいつき</rt></ruby>の<ruby>支払<rt>しはら</rt></ruby>い: <span id="monthly-expense">0</span><ruby>円<rt>えん</rt></ruby></p>
+          <p><ruby>毎月<rt>まいつき</rt></ruby><ruby>貯<rt>た</rt></ruby>まるおかね: <span id="monthly-savings">500</span><ruby>円<rt>えん</rt></ruby></p>
+          <p><ruby>目標達成<rt>もくひょうたっせい</rt></ruby>まで: <span id="required-months">0</span><ruby>ヶ月必要<rt>かげつひつよう</rt></ruby></p>
+          <p id="plan-status" class="plan-status"></p>
+        </div>
+
+        <button id="btn-start-challenge" class="btn btn-primary" disabled>チャレンジする！</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 実行画面 -->
+  <section id="playing" class="screen" style="display: none;">
+    <div class="container">
+      <!-- ヘッダー -->
+      <div class="game-header">
+        <div class="header-info">
+          <p class="current-month"><ruby>現在<rt>げんざい</rt></ruby>: <span id="current-month-display">4月</span></p>
+          <p class="current-money"><ruby>所持金<rt>しょじきん</rt></ruby>: <span id="current-money-display">0</span><ruby>円<rt>えん</rt></ruby></p>
+        </div>
+      </div>
+
+      <!-- 目標表示エリア -->
+      <div class="goal-display">
+        <div class="goal-card">
+          <img id="playing-goal-image" src="" alt="">
+          <p class="goal-name" id="playing-goal-name"></p>
+          <p class="goal-price"><ruby>目標金額<rt>もくひょうきんがく</rt></ruby>: <span id="playing-goal-price"></span><ruby>円<rt>えん</rt></ruby></p>
+        </div>
+        <div class="progress-container">
+          <div class="progress-bar">
+            <div id="progress-fill" class="progress-fill"></div>
+          </div>
+          <p class="progress-text"><span id="progress-percentage">0</span>%</p>
+        </div>
+      </div>
+
+      <!-- イベント表示エリア -->
+      <div id="event-area" class="event-area">
+        <!-- JavaScriptで動的生成 -->
+      </div>
+
+      <!-- 計画との差分表示 -->
+      <div id="plan-difference" class="plan-difference">
+        <p><ruby>計画<rt>けいかく</rt></ruby>との<ruby>差<rt>さ</rt></ruby>: <span id="difference-amount">0</span><ruby>円<rt>えん</rt></ruby></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 結果画面 -->
+  <section id="result" class="screen" style="display: none;">
+    <div class="container">
+      <div id="result-content">
+        <h2 id="result-title"></h2>
+        <div id="result-details" class="result-details">
+          <!-- JavaScriptで動的生成 -->
+        </div>
+        <div id="result-stats" class="result-stats">
+          <!-- JavaScriptで動的生成 -->
+        </div>
+      </div>
+      <button id="btn-play-again" class="btn btn-primary">もういちど<ruby>遊<rt>あそ</rt></ruby>ぶ</button>
+    </div>
+  </section>
+
+  <script src="js/game.js"></script>
+</body>
+</html>

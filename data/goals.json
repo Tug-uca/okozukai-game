@@ -1,0 +1,30 @@
+[
+  {
+    "id": "goal_1",
+    "name": "ミニカー",
+    "price": 1500,
+    "image": "assets/images/goals/minicar.png",
+    "difficulty": "easy"
+  },
+  {
+    "id": "goal_2",
+    "name": "ぬいぐるみ",
+    "price": 2500,
+    "image": "assets/images/goals/plush.png",
+    "difficulty": "normal"
+  },
+  {
+    "id": "goal_3",
+    "name": "ゲーム",
+    "price": 4000,
+    "image": "assets/images/goals/game.png",
+    "difficulty": "hard"
+  },
+  {
+    "id": "goal_4",
+    "name": "自転車",
+    "price": 6000,
+    "image": "assets/images/goals/bicycle.png",
+    "difficulty": "very_hard"
+  }
+]
