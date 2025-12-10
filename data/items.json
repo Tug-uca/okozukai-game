@@ -1,127 +1,56 @@
-{
-  "snacks": [
-    {
-      "id": "snack_1",
-      "name": "チョコレート",
-      "price": 100,
-      "category": "snacks",
-      "image": "assets/images/items/chocolate.png"
-    },
-    {
-      "id": "snack_2",
-      "name": "アイスクリーム",
-      "price": 150,
-      "category": "snacks",
-      "image": "assets/images/items/icecream.png"
-    },
-    {
-      "id": "snack_3",
-      "name": "グミ",
-      "price": 120,
-      "category": "snacks",
-      "image": "assets/images/items/gummy.png"
-    },
-    {
-      "id": "snack_4",
-      "name": "ポテトチップス",
-      "price": 130,
-      "category": "snacks",
-      "image": "assets/images/items/chips.png"
-    },
-    {
-      "id": "snack_5",
-      "name": "キャンディー",
-      "price": 100,
-      "category": "snacks",
-      "image": "assets/images/items/candy.png"
-    },
-    {
-      "id": "snack_6",
-      "name": "クッキー",
-      "price": 180,
-      "category": "snacks",
-      "image": "assets/images/items/cookie.png"
-    }
-  ],
-  "toys": [
-    {
-      "id": "toy_1",
-      "name": "ミニカー",
-      "price": 300,
-      "category": "toys",
-      "image": "assets/images/items/minicar.png"
-    },
-    {
-      "id": "toy_2",
-      "name": "ぬりえセット",
-      "price": 400,
-      "category": "toys",
-      "image": "assets/images/items/coloring.png"
-    },
-    {
-      "id": "toy_3",
-      "name": "カードパック",
-      "price": 500,
-      "category": "toys",
-      "image": "assets/images/items/cards.png"
-    },
-    {
-      "id": "toy_4",
-      "name": "小さいぬいぐるみ",
-      "price": 600,
-      "category": "toys",
-      "image": "assets/images/items/small_plush.png"
-    },
-    {
-      "id": "toy_5",
-      "name": "ブロック",
-      "price": 700,
-      "category": "toys",
-      "image": "assets/images/items/blocks.png"
-    },
-    {
-      "id": "toy_6",
-      "name": "ボール",
-      "price": 800,
-      "category": "toys",
-      "image": "assets/images/items/ball.png"
-    }
-  ],
-  "arcade": [
-    {
-      "id": "arcade_1",
-      "name": "レースゲーム",
-      "price": 100,
-      "category": "arcade",
-      "image": "assets/images/items/racegame.png"
-    },
-    {
-      "id": "arcade_2",
-      "name": "UFOキャッチャー",
-      "price": 200,
-      "category": "arcade",
-      "image": "assets/images/items/ufocatcher.png"
-    },
-    {
-      "id": "arcade_3",
-      "name": "太鼓ゲーム",
-      "price": 300,
-      "category": "arcade",
-      "image": "assets/images/items/drumgame.png"
-    },
-    {
-      "id": "arcade_4",
-      "name": "エアホッケー",
-      "price": 200,
-      "category": "arcade",
-      "image": "assets/images/items/airhockey.png"
-    },
-    {
-      "id": "arcade_5",
-      "name": "もぐらたたき",
-      "price": 100,
-      "category": "arcade",
-      "image": "assets/images/items/whackamole.png"
-    }
-  ]
-}
+[
+  {
+    "id": "item_1",
+    "name": "チョコレート",
+    "price": 150,
+    "image": "assets/images/items/chocolate.png"
+  },
+  {
+    "id": "item_2",
+    "name": "ゲームセンター",
+    "price": 200,
+    "image": "assets/images/items/racegame.png"
+  },
+  {
+    "id": "item_3",
+    "name": "ガチャガチャ",
+    "price": 300,
+    "image": "assets/images/items/whackamole.png"
+  },
+  {
+    "id": "item_4",
+    "name": "グミ",
+    "price": 150,
+    "image": "assets/images/items/gummy.png"
+  },
+  {
+    "id": "item_5",
+    "name": "ポテトチップス",
+    "price": 200,
+    "image": "assets/images/items/chips.png"
+  },
+  {
+    "id": "item_6",
+    "name": "おもちゃつきチョコ",
+    "price": 300,
+    "image": "assets/images/items/ufocatcher.png"
+  },
+  {
+    "id": "item_7",
+    "name": "エアホッケー",
+    "price": 200,
+    "image": "assets/images/items/airhockey.png"
+  },
+  {
+    "id": "item_8",
+    "name": "ガチャガチャ",
+    "price": 300,
+    "image": "assets/images/items/minicar.png"
+  },
+  {
+    "id": "item_9",
+    "name": "おもちゃつきチョコ",
+    "price": 300,
+    "image": "assets/images/items/icecream.png"
+  }
+]

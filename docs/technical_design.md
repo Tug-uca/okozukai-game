@@ -92,139 +92,118 @@ const gameState = {
 
 ### 3.2 アイテムデータ構造（items.json）
 
+カテゴリー分けせず、フラットな配列構造で管理します。
+
 ```json
-{
-  "snacks": [
-    {
-      "id": "snack_1",
-      "name": "チョコレート",
-      "price": 100,
-      "category": "snacks",
-      "image": "assets/images/items/chocolate.png"
-    },
-    {
-      "id": "snack_2",
-      "name": "アイスクリーム",
-      "price": 150,
-      "category": "snacks",
-      "image": "assets/images/items/icecream.png"
-    },
-    {
-      "id": "snack_3",
-      "name": "グミ",
-      "price": 120,
-      "category": "snacks",
-      "image": "assets/images/items/gummy.png"
-    },
-    {
-      "id": "snack_4",
-      "name": "ポテトチップス",
-      "price": 130,
-      "category": "snacks",
-      "image": "assets/images/items/chips.png"
-    },
-    {
-      "id": "snack_5",
-      "name": "キャンディー",
-      "price": 100,
-      "category": "snacks",
-      "image": "assets/images/items/candy.png"
-    },
-    {
-      "id": "snack_6",
-      "name": "クッキー",
-      "price": 180,
-      "category": "snacks",
-      "image": "assets/images/items/cookie.png"
-    }
-  ],
-  "toys": [
-    {
-      "id": "toy_1",
-      "name": "ミニカー",
-      "price": 300,
-      "category": "toys",
-      "image": "assets/images/items/minicar.png"
-    },
-    {
-      "id": "toy_2",
-      "name": "ぬりえセット",
-      "price": 400,
-      "category": "toys",
-      "image": "assets/images/items/coloring.png"
-    },
-    {
-      "id": "toy_3",
-      "name": "カードパック",
-      "price": 500,
-      "category": "toys",
-      "image": "assets/images/items/cards.png"
-    },
-    {
-      "id": "toy_4",
-      "name": "小さいぬいぐるみ",
-      "price": 600,
-      "category": "toys",
-      "image": "assets/images/items/small_plush.png"
-    },
-    {
-      "id": "toy_5",
-      "name": "ブロック",
-      "price": 700,
-      "category": "toys",
-      "image": "assets/images/items/blocks.png"
-    },
-    {
-      "id": "toy_6",
-      "name": "ボール",
-      "price": 800,
-      "category": "toys",
-      "image": "assets/images/items/ball.png"
-    }
-  ],
-  "arcade": [
-    {
-      "id": "arcade_1",
-      "name": "レースゲーム",
-      "price": 100,
-      "category": "arcade",
-      "image": "assets/images/items/racegame.png"
-    },
-    {
-      "id": "arcade_2",
-      "name": "UFOキャッチャー",
-      "price": 200,
-      "category": "arcade",
-      "image": "assets/images/items/ufocatcher.png"
-    },
-    {
-      "id": "arcade_3",
-      "name": "太鼓ゲーム",
-      "price": 300,
-      "category": "arcade",
-      "image": "assets/images/items/drumgame.png"
-    },
-    {
-      "id": "arcade_4",
-      "name": "エアホッケー",
-      "price": 200,
-      "category": "arcade",
-      "image": "assets/images/items/airhockey.png"
-    },
-    {
-      "id": "arcade_5",
-      "name": "もぐらたたき",
-      "price": 100,
-      "category": "arcade",
-      "image": "assets/images/items/whackamole.png"
-    }
-  ]
-}
+[
+  {
+    "id": "item_1",
+    "name": "チョコレート",
+    "price": 100,
+    "image": "assets/images/items/chocolate.png"
+  },
+  {
+    "id": "item_2",
+    "name": "キャンディー",
+    "price": 100,
+    "image": "assets/images/items/candy.png"
+  },
+  {
+    "id": "item_3",
+    "name": "レースゲーム",
+    "price": 100,
+    "image": "assets/images/items/racegame.png"
+  },
+  {
+    "id": "item_4",
+    "name": "もぐらたたき",
+    "price": 100,
+    "image": "assets/images/items/whackamole.png"
+  },
+  {
+    "id": "item_5",
+    "name": "グミ",
+    "price": 120,
+    "image": "assets/images/items/gummy.png"
+  },
+  {
+    "id": "item_6",
+    "name": "ポテトチップス",
+    "price": 130,
+    "image": "assets/images/items/chips.png"
+  },
+  {
+    "id": "item_7",
+    "name": "アイスクリーム",
+    "price": 150,
+    "image": "assets/images/items/icecream.png"
+  },
+  {
+    "id": "item_8",
+    "name": "クッキー",
+    "price": 180,
+    "image": "assets/images/items/cookie.png"
+  },
+  {
+    "id": "item_9",
+    "name": "UFOキャッチャー",
+    "price": 200,
+    "image": "assets/images/items/ufocatcher.png"
+  },
+  {
+    "id": "item_10",
+    "name": "エアホッケー",
+    "price": 200,
+    "image": "assets/images/items/airhockey.png"
+  },
+  {
+    "id": "item_11",
+    "name": "ミニカー",
+    "price": 300,
+    "image": "assets/images/items/minicar.png"
+  },
+  {
+    "id": "item_12",
+    "name": "太鼓ゲーム",
+    "price": 300,
+    "image": "assets/images/items/drumgame.png"
+  },
+  {
+    "id": "item_13",
+    "name": "ぬりえセット",
+    "price": 400,
+    "image": "assets/images/items/coloring.png"
+  },
+  {
+    "id": "item_14",
+    "name": "カードパック",
+    "price": 500,
+    "image": "assets/images/items/cards.png"
+  },
+  {
+    "id": "item_15",
+    "name": "小さいぬいぐるみ",
+    "price": 600,
+    "image": "assets/images/items/small_plush.png"
+  },
+  {
+    "id": "item_16",
+    "name": "ブロック",
+    "price": 700,
+    "image": "assets/images/items/blocks.png"
+  },
+  {
+    "id": "item_17",
+    "name": "ボール",
+    "price": 800,
+    "image": "assets/images/items/ball.png"
+  }
+]
 ```
 
 **画像フォールバック対応：**
-- 画像が存在しない場合は、`name`プロパティのテキストを表示
-- HTMLの`<img>`タグに`onerror`属性を設定し、テキスト表示に切り替え
+- 画像が存在しない場合は、画像枠内に`name`プロパティのテキストを表示
+- 画像エリアは常に確保され、読み込めない場合のみテキストで代替
 
 ### 3.3 目標おもちゃデータ構造（goals.json）
 
@@ -308,8 +287,8 @@ const gameState = {
 // recurringPurchases配列の例
 // 毎月これらのアイテムを購入する計画
 [
-  {itemId: "snack_1", itemName: "チョコレート", price: 100, category: "snacks"},
-  {itemId: "toy_1", itemName: "ミニカー", price: 300, category: "toys"},
+  {itemId: "item_1", itemName: "チョコレート", price: 100},
+  {itemId: "item_11", itemName: "ミニカー", price: 300},
 ]
 
 // 合計支出: 400円/月
@@ -502,12 +481,7 @@ function calculateMonthlySavings() {
  */
 function generateTemptationEvent() {
   // すべてのアイテムからランダムに選択
-  const allItems = [
-    ...itemsData.snacks,
-    ...itemsData.toys,
-    ...itemsData.arcade
-  ];
-  const randomItem = allItems[Math.floor(Math.random() * allItems.length)];
+  const randomItem = itemsData[Math.floor(Math.random() * itemsData.length)];
 
   return {
     type: 'temptation',
@@ -619,7 +593,7 @@ function getMonthName(monthNumber) {
 ### 6.1 イベントの種類
 
 1. **誘惑イベント（Temptation）**
-   - 月に2〜3回発生
+   - 月に2回発生（固定）
    - すべてのアイテムからランダムに選択
    - プレイヤーの計画とは無関係に発生
 
@@ -641,9 +615,9 @@ function getMonthName(monthNumber) {
    - 発生した場合、確率に基づいてハプニングを選択
    - メッセージ表示、お金の増減
 
-3. **お出かけイベント**（2〜3回）
+3. **お出かけイベント**（2回・固定）
    - 誘惑イベントをランダムに生成
-   - アイテムカードを表示
+   - アイテムカードを画像付きで表示（画像が読み込めない場合は画像枠内にテキスト表示）
    - プレイヤーが「買う」「がまんする」を選択
    - 結果の表示
 
@@ -656,8 +630,8 @@ function getMonthName(monthNumber) {
 
 **アイテムの追加方法：**
 1. `data/items.json`を開く
-2. 該当カテゴリ（snacks/toys/arcade）に新しいオブジェクトを追加
-3. 画像ファイルを配置
+2. 配列に新しいオブジェクトを追加
+3. 画像ファイルを配置（オプション）
 4. ページをリロード
 
 **ハプニングの追加方法：**
@@ -821,27 +795,47 @@ rt {
 
 ### 8.6 画像フォールバック
 
+画像が読み込めない場合は、画像枠内にアイテム名をテキストで表示します。
+
 **実装方法：**
 ```html
-<img
-  src="assets/images/items/chocolate.png"
-  alt="チョコレート"
-  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
->
-<span style="display:none;">チョコレート</span>
+<div class="item-card">
+  <div class="item-image-container">
+    <img
+      src="assets/images/items/chocolate.png"
+      alt="チョコレート"
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+    >
+    <div class="img-fallback" style="display:none;">チョコレート</div>
+  </div>
+  <div class="item-name">チョコレート</div>
+  <div class="item-price">100円</div>
+</div>
 ```
 
-または、JavaScriptで一括処理：
-```javascript
-document.querySelectorAll('img').forEach(img => {
-  img.onerror = function() {
-    this.style.display = 'none';
-    const text = document.createElement('div');
-    text.className = 'img-fallback';
-    text.textContent = this.alt;
-    this.parentNode.insertBefore(text, this.nextSibling);
-  };
-});
+**CSS：**
+```css
+.item-image-container {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.img-fallback {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  padding: 8px;
+}
 ```
 
 ---
@@ -878,7 +872,7 @@ const CONSTANTS = {
   MAX_GOAL_PRICE: 6000,         // 最大目標金額
   MAX_MONTHS: 12,               // 最大計画月数
   START_MONTH: 4,               // 開始月（4月）
-  TEMPTATION_PER_MONTH: [2, 3], // 月の誘惑回数（最小、最大）
+  TEMPTATION_PER_MONTH: 2,      // 月の誘惑回数（固定）
   HAPPENING_PROBABILITY: 0.5,   // ハプニング発生確率
 };
 ```
@@ -892,13 +886,12 @@ const CONSTANTS = {
 ### 9.3 新しいアイテム追加手順
 
 1. `data/items.json`を開く
-2. 該当カテゴリ（snacks/toys/arcade）に新しいオブジェクトを追加
+2. 配列に新しいオブジェクトを追加
    ```json
    {
-     "id": "snack_7",
+     "id": "item_18",
      "name": "ドーナツ",
      "price": 150,
-     "category": "snacks",
      "image": "assets/images/items/donut.png"
    }
    ```
@@ -1084,8 +1077,7 @@ Phase 1完成後に検討できる機能：
 | MAX_GOAL_PRICE | 6000 | 最大目標金額（円） |
 | MAX_MONTHS | 12 | 最大計画月数 |
 | START_MONTH | 4 | 開始月（4月） |
-| TEMPTATION_MIN | 2 | 月の誘惑最小回数 |
-| TEMPTATION_MAX | 3 | 月の誘惑最大回数 |
+| TEMPTATION_PER_MONTH | 2 | 月の誘惑回数（固定） |
 | HAPPENING_PROBABILITY | 0.5 | ハプニング発生確率 |
 
 ---

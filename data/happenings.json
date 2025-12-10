@@ -19,12 +19,5 @@
     "message": "たんじょう日で、おかねをもらった！",
     "amount": 500,
     "probability": 0.05
-  },
-  {
-    "id": "happening_4",
-    "type": "negative",
-    "message": "おかねをおとしてしまった…",
-    "amount": -200,
-    "probability": 0.05
   }
 ]

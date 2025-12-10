@@ -8,8 +8,7 @@ const CONSTANTS = {
   MAX_GOAL_PRICE: 6000,         // 最大目標金額
   MAX_MONTHS: 12,               // 最大計画月数
   START_MONTH: 4,               // 開始月（4月）
-  TEMPTATION_MIN: 2,            // 月の誘惑最小回数
-  TEMPTATION_MAX: 3,            // 月の誘惑最大回数
+  TEMPTATION_PER_MONTH: 2,      // 月の誘惑回数（固定）
   HAPPENING_PROBABILITY: 0.5,   // ハプニング発生確率
 };
 
@@ -90,6 +89,13 @@ async function loadGameData() {
 function setupImageFallback(imgElement, fallbackText) {
   imgElement.onerror = function() {
     this.style.display = 'none';
+
+    // 既存のフォールバック要素があれば削除
+    const existingFallback = this.parentNode.querySelector('.img-fallback');
+    if (existingFallback) {
+      existingFallback.remove();
+    }
+
     const fallback = document.createElement('div');
     fallback.className = 'img-fallback';
     fallback.textContent = fallbackText;
@@ -192,10 +198,12 @@ function renderResultScreen(success) {
     `;
   }
 
+  const actualMonths = gameState.game.currentMonth - gameState.game.startMonth + 1;
+
   stats.innerHTML = `
     <h3><ruby>記録<rt>きろく</rt></ruby></h3>
     <p><ruby>計画期間<rt>けいかくきかん</rt></ruby>: ${gameState.game.plannedMonths}<ruby>ヶ月<rt>かげつ</rt></ruby></p>
-    <p><ruby>実際<rt>じっさい</rt></ruby>の<ruby>期間<rt>きかん</rt></ruby>: ${gameState.game.currentMonth}<ruby>ヶ月<rt>かげつ</rt></ruby></p>
+    <p><ruby>実際<rt>じっさい</rt></ruby>の<ruby>期間<rt>きかん</rt></ruby>: ${actualMonths}<ruby>ヶ月<rt>かげつ</rt></ruby></p>
     <p><ruby>最終所持金<rt>さいしゅうしょじきん</rt></ruby>: <span>${gameState.player.money}</span><ruby>円<rt>えん</rt></ruby></p>
     <p><ruby>誘惑<rt>ゆうわく</rt></ruby>に<ruby>勝<rt>か</rt></ruby>った<ruby>回数<rt>かいすう</rt></ruby>: <span>${gameState.stats.resistedTemptations}</span><ruby>回<rt>かい</rt></ruby></p>
     <p><ruby>誘惑<rt>ゆうわく</rt></ruby>に<ruby>負<rt>ま</rt></ruby>けた<ruby>回数<rt>かいすう</rt></ruby>: <span>${gameState.stats.gavingInTemptations}</span><ruby>回<rt>かい</rt></ruby></p>
@@ -221,16 +229,19 @@ function updateProgressBar() {
 }
 
 function updatePlanDifferenceDisplay() {
-  const difference = calculatePlanDifference();
+  const goalPrice = gameState.game.selectedGoal.price;
+  const currentMoney = gameState.player.money;
+  const remaining = Math.max(0, goalPrice - currentMoney);
+
   const diffElement = document.getElementById('plan-difference');
   const diffAmount = document.getElementById('difference-amount');
 
   if (diffElement && diffAmount) {
-    diffAmount.textContent = difference >= 0 ? '+' + difference : difference;
+    diffAmount.textContent = remaining;
     diffElement.className = 'plan-difference';
-    if (difference > 0) {
+    if (remaining === 0) {
       diffElement.classList.add('positive');
-    } else if (difference < 0) {
+    } else if (currentMoney < goalPrice * 0.5) {
       diffElement.classList.add('negative');
     }
   }
@@ -254,14 +265,22 @@ function selectGoal(goalId) {
   const display = document.getElementById('selected-goal-display');
   display.style.display = 'block';
 
-  document.getElementById('selected-goal-image').src = goal.image;
+  // 既存のフォールバック要素をクリア
+  const goalImageContainer = document.getElementById('selected-goal-image').parentNode;
+  const existingFallback = goalImageContainer.querySelector('.img-fallback');
+  if (existingFallback) {
+    existingFallback.remove();
+  }
+
+  // 画像要素をリセット
+  const goalImage = document.getElementById('selected-goal-image');
+  goalImage.style.display = 'block';
+  goalImage.src = goal.image;
+
   document.getElementById('selected-goal-name').textContent = goal.name;
   document.getElementById('selected-goal-price').textContent = goal.price;
 
-  setupImageFallback(
-    document.getElementById('selected-goal-image'),
-    goal.name
-  );
+  setupImageFallback(goalImage, goal.name);
 
   // 毎月の購入アイテム選択セクションを表示
   document.getElementById('recurring-purchase-section').style.display = 'block';
@@ -281,14 +300,8 @@ function renderRecurringPurchaseSelection() {
   const itemSelection = document.getElementById('recurring-item-selection');
   itemSelection.innerHTML = '';
 
-  // すべてのアイテムを表示
-  const allItems = [
-    ...itemsData.snacks,
-    ...itemsData.toys,
-    ...itemsData.arcade
-  ];
-
-  allItems.forEach(item => {
+  // すべてのアイテムを表示（フラットな配列）
+  itemsData.forEach(item => {
     const card = createRecurringItemCard(item);
     itemSelection.appendChild(card);
   });
@@ -311,6 +324,25 @@ function createRecurringItemCard(item) {
 
   card.onclick = () => toggleRecurringPurchase(item);
 
+  // 画像コンテナ
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'item-image-container';
+
+  const img = document.createElement('img');
+  img.src = item.image;
+  img.alt = item.name;
+  img.onerror = function() {
+    this.style.display = 'none';
+    this.nextElementSibling.style.display = 'flex';
+  };
+
+  const fallback = document.createElement('div');
+  fallback.className = 'img-fallback';
+  fallback.textContent = item.name;
+
+  imageContainer.appendChild(img);
+  imageContainer.appendChild(fallback);
+
   const nameElement = document.createElement('p');
   nameElement.className = 'item-name';
   nameElement.textContent = item.name;
@@ -319,6 +351,7 @@ function createRecurringItemCard(item) {
   priceElement.className = 'item-price';
   priceElement.innerHTML = `${item.price}<ruby>円<rt>えん</rt></ruby>`;
 
+  card.appendChild(imageContainer);
   card.appendChild(nameElement);
   card.appendChild(priceElement);
 
@@ -339,8 +372,7 @@ function toggleRecurringPurchase(item) {
     gameState.game.recurringPurchases.push({
       itemId: item.id,
       itemName: item.name,
-      price: item.price,
-      category: item.category
+      price: item.price
     });
   }
 
@@ -501,8 +533,7 @@ function processMonth() {
   eventArea.innerHTML = '';
 
   gameState.game.temptationsThisMonth = 0;
-  gameState.game.maxTemptationsThisMonth =
-    Math.floor(Math.random() * (CONSTANTS.TEMPTATION_MAX - CONSTANTS.TEMPTATION_MIN + 1)) + CONSTANTS.TEMPTATION_MIN;
+  gameState.game.maxTemptationsThisMonth = CONSTANTS.TEMPTATION_PER_MONTH;
 
   // 月初めのおこづかいをもらう
   showMonthStartEvent();
@@ -523,10 +554,59 @@ function showMonthStartEvent() {
   button.textContent = 'OK';
   button.onclick = () => {
     gameState.player.money += gameState.player.monthlyAllowance;
+
+    // 定期購入の自動支払い
+    const recurringExpense = gameState.game.recurringPurchases.reduce((sum, item) => sum + item.price, 0);
+    if (recurringExpense > 0) {
+      gameState.player.money -= recurringExpense;
+    }
+
     updateMoneyDisplay();
     updateProgressBar();
+    updatePlanDifferenceDisplay();
     saveGame();
 
+    // 定期購入の支払いを表示
+    if (recurringExpense > 0) {
+      setTimeout(() => {
+        showRecurringPurchaseEvent(recurringExpense);
+      }, 300);
+    } else {
+      // 定期購入がない場合は直接ハプニングへ
+      setTimeout(() => {
+        checkAndShowHappening();
+      }, 300);
+    }
+  };
+
+  card.appendChild(message);
+  card.appendChild(button);
+  eventArea.appendChild(card);
+}
+
+function showRecurringPurchaseEvent(expense) {
+  const eventArea = document.getElementById('event-area');
+  eventArea.innerHTML = '';
+
+  const card = document.createElement('div');
+  card.className = 'event-card fade-in';
+
+  const message = document.createElement('p');
+  message.className = 'event-message';
+
+  const itemNames = gameState.game.recurringPurchases.map(item => item.itemName).join('、');
+  message.innerHTML = `<ruby>毎月<rt>まいつき</rt></ruby><ruby>買<rt>か</rt></ruby>うもの（${itemNames}）を<ruby>買<rt>か</rt></ruby>ったよ！`;
+
+  const amountText = document.createElement('p');
+  amountText.className = 'event-message';
+  amountText.style.color = 'var(--danger-color)';
+  amountText.style.fontWeight = 'bold';
+  amountText.textContent = `-${expense}円`;
+
+  const button = document.createElement('button');
+  button.className = 'btn btn-primary';
+  button.textContent = 'OK';
+  button.onclick = () => {
     // ハプニングイベントの発生チェック
     setTimeout(() => {
       checkAndShowHappening();
@@ -534,6 +614,7 @@ function showMonthStartEvent() {
   };
 
   card.appendChild(message);
+  card.appendChild(amountText);
   card.appendChild(button);
   eventArea.appendChild(card);
 }
@@ -593,6 +674,7 @@ function showHappeningEvent(happening) {
     gameState.player.money += happening.amount;
     updateMoneyDisplay();
     updateProgressBar();
+    updatePlanDifferenceDisplay();
     saveGame();
 
     gameState.game.events.push({
@@ -625,12 +707,8 @@ function showNextTemptation() {
 }
 
 function generateTemptationEvent() {
-  const allItems = [
-    ...itemsData.snacks,
-    ...itemsData.toys,
-    ...itemsData.arcade
-  ];
-  const randomItem = allItems[Math.floor(Math.random() * allItems.length)];
+  // フラットな配列からランダムに選択
+  const randomItem = itemsData[Math.floor(Math.random() * itemsData.length)];
 
   return {
     type: 'temptation',
@@ -656,6 +734,25 @@ function showTemptationEvent(temptation) {
   const itemDiv = document.createElement('div');
   itemDiv.className = 'temptation-item';
 
+  // 画像コンテナ
+  const imageContainer = document.createElement('div');
+  imageContainer.className = 'item-image-container';
+
+  const img = document.createElement('img');
+  img.src = temptation.item.image;
+  img.alt = temptation.item.name;
+  img.onerror = function() {
+    this.style.display = 'none';
+    this.nextElementSibling.style.display = 'flex';
+  };
+
+  const fallback = document.createElement('div');
+  fallback.className = 'img-fallback';
+  fallback.textContent = temptation.item.name;
+
+  imageContainer.appendChild(img);
+  imageContainer.appendChild(fallback);
+
   const itemInfo = document.createElement('div');
   itemInfo.className = 'temptation-info';
 
@@ -669,6 +766,8 @@ function showTemptationEvent(temptation) {
 
   itemInfo.appendChild(itemName);
   itemInfo.appendChild(itemPrice);
+
+  itemDiv.appendChild(imageContainer);
   itemDiv.appendChild(itemInfo);
 
   const buttonsDiv = document.createElement('div');
