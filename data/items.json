@@ -9,13 +9,13 @@
     "id": "item_2",
     "name": "ゲームセンター",
     "price": 200,
-    "image": "assets/images/items/racegame.png"
+    "image": "assets/images/items/gamecenter.png"
   },
   {
     "id": "item_3",
     "name": "ガチャガチャ",
     "price": 300,
-    "image": "assets/images/items/whackamole.png"
+    "image": "assets/images/items/gacha.png"
   },
   {
     "id": "item_4",
@@ -33,24 +33,6 @@
     "id": "item_6",
     "name": "おもちゃつきチョコ",
     "price": 300,
-    "image": "assets/images/items/ufocatcher.png"
-  },
-  {
-    "id": "item_7",
-    "name": "エアホッケー",
-    "price": 200,
-    "image": "assets/images/items/airhockey.png"
-  },
-  {
-    "id": "item_8",
-    "name": "ガチャガチャ",
-    "price": 300,
-    "image": "assets/images/items/minicar.png"
-  },
-  {
-    "id": "item_9",
-    "name": "おもちゃつきチョコ",
-    "price": 300,
-    "image": "assets/images/items/icecream.png"
+    "image": "assets/images/items/toy-choco.png"
   }
 ]

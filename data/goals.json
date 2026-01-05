@@ -10,21 +10,28 @@
     "id": "goal_2",
     "name": "ロボット",
     "price": 2500,
-    "image": "assets/images/goals/plush.png",
+    "image": "assets/images/goals/robot.png",
     "difficulty": "normal"
   },
   {
     "id": "goal_3",
     "name": "ラジコン",
     "price": 5000,
-    "image": "assets/images/goals/game.png",
+    "image": "assets/images/goals/rc-car.png",
     "difficulty": "hard"
   },
   {
     "id": "goal_4",
     "name": "ゲーム",
     "price": 8000,
-    "image": "assets/images/goals/bicycle.png",
+    "image": "assets/images/goals/game.png",
     "difficulty": "very_hard"
+  },
+  {
+    "id": "goal_5",
+    "name": "Nゲージ",
+    "price": 10000,
+    "image": "assets/images/goals/n-gauge.png",
+    "difficulty": "extreme"
   }
 ]
